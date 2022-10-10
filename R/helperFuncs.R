@@ -20,7 +20,6 @@ mlMetrics<-function(model,training=NULL,testing=NULL){
   names(Mylist)<-c("trainr","testr")
   return(Mylist)
   
-  
 }
 
 
@@ -34,4 +33,9 @@ mdensity<-function(data,main=paste(names(data),collapse = ' vs '),...){
   densityplot(~x,data=df,groups = label,plot.points = F, ref = T, auto.key = list(space = "right"),main=main,...)
 }
 
+
+shpPlot<-function(shpData,varName,virdisColor="C",...){
+ggplot() + 
+  geom_sf(data =shpData , aes_string(fill = varName)) +
+  viridis::scale_fill_viridis(option=virdisColor) + theme_void()}
 
