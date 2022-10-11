@@ -30,7 +30,7 @@ mdensity<-function(data,main=paste(names(data),collapse = ' vs '),...){
     idf=data.frame(x=data[[n]],label=rep(n,length(data[[n]])))
     df=rbind(df,idf)
   }
-  densityplot(~x,data=df,groups = label,plot.points = F, ref = T, auto.key = list(space = "right"),main=main,...)
+  lattice::densityplot(~x,data=df,groups = label,plot.points = F, ref = T, auto.key = list(space = "right"),main=main,...)
 }
 
 
