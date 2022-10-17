@@ -39,3 +39,14 @@ ggplot() +
   geom_sf(data =shpData , aes_string(fill = varName)) +
   viridis::scale_fill_viridis(option=virdisColor) + theme_void()}
 
+
+
+
+lMerge<-function(dt=NULL,newNames=NULL){
+mergedData = Reduce(function(...) merge(..., all = TRUE), dt)
+
+if(!is.null(newNames)){
+setnames(mergedData,newNames) 
+}
+return(mergedData)
+}
