@@ -34,11 +34,18 @@ mdensity<-function(data,main=paste(names(data),collapse = ' vs '),...){
 }
 
 
-shpPlot<-function(shpData,varName,virdisColor="C",...){
-  ggplot() + 
-    geom_sf(data =shpData , aes_string(fill = varName),...) +
-    viridis::scale_fill_viridis(option=virdisColor) + theme_void()}
-
+shpPlot<-function(shpData,varName,virdisColor=NULL,scaleColor=NULL,...){
+  p<-ggplot() + 
+    geom_sf(data =shpData , aes_string(fill = varName),...) + theme_void()
+  
+  if(!is.null(virdisColor)){
+    p +viridis::scale_fill_viridis(option=virdisColor)
+  }else{
+  
+    p +scale_fill_gradient(low = scaleColor[1], high = scaleColor[2], na.value = NA)
+  }
+  
+}
 
 
 lMerge<-function(dt=NULL,newNames=NULL){
