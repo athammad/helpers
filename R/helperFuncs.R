@@ -35,10 +35,9 @@ mdensity<-function(data,main=paste(names(data),collapse = ' vs '),...){
 
 
 shpPlot<-function(shpData,varName,virdisColor="C",...){
-ggplot() + 
-  geom_sf(data =shpData , aes_string(fill = varName)) +
-  viridis::scale_fill_viridis(option=virdisColor) + theme_void()}
-
+  ggplot() + 
+    geom_sf(data =shpData , aes_string(fill = varName),...) +
+    viridis::scale_fill_viridis(option=virdisColor) + theme_void()}
 
 
 
