@@ -131,3 +131,11 @@ coords2country = function(points)
 }
 
                     
+getMachineInfo<-function(){
+CORES<-parallel::detectCores()
+RAM<-system("lsmem | grep 'Total online memory'", intern = TRUE)
+
+cat(paste0("CORES: ",CORES,"\n",RAM))
+}
+                    
+                    
