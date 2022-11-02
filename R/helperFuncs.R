@@ -132,11 +132,11 @@ coords2country = function(points)
 
                     
 getMachineInfo<-function(){
-SYS<-Sys.info()["sysname"] 
-CORES<-parallel::detectCores()
-RAM<-system("lsmem | grep 'Total online memory'", intern = TRUE)
-
-cat(paste0(SYS,"\n","CORES: ",CORES,"\n",RAM))
+  SYS<-paste(Sys.info()["sysname"],"System") 
+  CORES<-parallel::detectCores()
+  RAM<-system("lsmem | grep 'Total online memory'", intern = TRUE)
+  
+  cat(crayon::cyan(paste0(crayon::bold(SYS),"\n","CORES: ",CORES,"\n",RAM)))
 }
                     
                     
