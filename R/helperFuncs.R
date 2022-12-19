@@ -141,16 +141,16 @@ getMachineInfo<-function(){
  
                     
                     
-shashPlot<-function(mu = 0.01, sigma = 0.08,nu = 1.2, tau = 0.1,PROB=NULL,color="red"){
+shashPlot<-function(range=c(-0, 1),mu = 0.01, sigma = 0.08,nu = 1.2, tau = 0.1,PROB=NULL,color="red"){
   
-  ggplot(data = data.frame(x = c(-0, 1)), aes(x)) +
+  ggplot(data = data.frame(x = range), aes(x)) +
     stat_function(fun = gamlss.dist::dSHASH, n = 10001, 
                   args = list(mu = mu, sigma = sigma, nu = nu, tau = tau)
                   ) +
     geom_vline(xintercept=PROB, size=1.5, color=color)+
     theme_minimal()
   
-}                 
+}
                     
                     
                     
