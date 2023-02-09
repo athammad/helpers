@@ -88,4 +88,11 @@ def plot_sinar(x_range=[0, 1], mu=0.5, sigma=0.1,skewness = 1.2,tailweight=0, cd
 #mu= 0.2,sigma = 0.2,,nu = 1.2, tau = 0.1
 #plot_sinar(mu= 0.1,sigma = 0.6,skewness=1.2,tailweight=2,cdf=False)
 
+########################################################
+from sklearn.preprocessing import FunctionTransformer
+import numpy as np
 
+def cyclic_encoding(period,dates):
+    cyc={"sin":FunctionTransformer(lambda x: np.sin(x / period * 2 * np.pi)).fit_transform(dates),
+     "cos":FunctionTransformer(lambda x: np.cos(x / period * 2 * np.pi)).fit_transform(dates)}
+    return pd.DataFrame(cyc)
