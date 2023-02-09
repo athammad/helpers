@@ -51,7 +51,7 @@ def plot_normal(x_range=[0, 1], mu=0.5, sigma=0.1, cdf=False, **kwargs):
     If cdf=True cumulative distribution is plotted
     Passes any keyword arguments to matplotlib plot function
     '''
-    x = x = np.linspace(x_range[0], x_range[1], 5000)
+    x = np.linspace(x_range[0], x_range[1], 5000)
     if cdf:
         y = ss.norm.cdf(x, mu, sigma)
     else:
@@ -78,7 +78,7 @@ def plot_sinar(x_range=[0, 1], mu=0.5, sigma=0.1,skewness = 1.2,tailweight=0, cd
     Passes any keyword arguments to matplotlib plot function
     '''
     sinar=tfd.SinhArcsinh(mu, sigma, skewness, tailweight)
-    x = x = np.linspace(x_range[0], x_range[1], 5000)
+    x = np.linspace(x_range[0], x_range[1], 5000)
     if cdf:
         y = sinar.cdf(x)
     else:
@@ -87,6 +87,23 @@ def plot_sinar(x_range=[0, 1], mu=0.5, sigma=0.1,skewness = 1.2,tailweight=0, cd
     
 #mu= 0.2,sigma = 0.2,,nu = 1.2, tau = 0.1
 #plot_sinar(mu= 0.1,sigma = 0.6,skewness=1.2,tailweight=2,cdf=False)
+
+
+########################################################
+from plotnine import ggplot, aes, geom_line, theme_minimal,stat_function
+
+def plot_sinar(x_range=[0, 1], mu=0.5, sigma=0.1,skewness = 1.2,tailweight=0, cdf=False):
+    
+    sinar=tfd.SinhArcsinh(mu, sigma, skewness, tailweight)
+    x = np.linspace(x_range[0], x_range[1], 5000)
+    if cdf:
+        y = sinar.cdf(x)
+    else:
+        y = sinar.prob(x)
+    dt=pd.DataFrame({"x":x,"y":y})
+    return ggplot(dt) +aes(x="x", y="y") + geom_line() + theme_minimal()
+  
+plot_sinar(mu= 0.1,sigma = 0.6,skewness=1.2,tailweight=2,cdf=False)
 
 ########################################################
 from sklearn.preprocessing import FunctionTransformer
